@@ -25,7 +25,34 @@ public class ServerFormController {
     final int port = 8000;
     final int port3 = 1234;
 
+    Socket accept;
+    ServerSocket serverSocket;
+    DataInputStream dataInputStream;
+    DataOutputStream dataOutputStream;
+    String message = "";
+
     @FXML
     void sendOnAction(ActionEvent event) throws IOException {
+
+//        client one thread
+        new Thread(() -> {
+            try{
+                serverSocket = new ServerSocket(PORT);
+                textArea.appendText("Server Started..\n");
+                accept = serverSocket.accept();
+                textArea.appendText("\nClient 1 Connected..");
+
+                dataInputStream = new DataInputStream(accept.getInputStream());
+                dataOutputStream = new DataOutputStream(accept.getOutputStream());
+
+                while (!message.equals("exit")) {
+                    message = dataInputStream.readUTF();
+                    textArea.appendText("\nClient 1 : " + message);
+
+                    dataOutputStream.writeUTF("Client 1 : " + message.trim());
+                    dataOutputStream.flush();
+                }
+            }catch (IOException ignored){}
+        }).start();
     }
 }
