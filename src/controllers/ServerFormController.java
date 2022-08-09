@@ -66,6 +66,14 @@ public class ServerFormController {
 
                     dataOutputStream.writeUTF("Client 1 : " + message.trim());
                     dataOutputStream.flush();
+
+                    text_chat_one = message;
+
+                    dataOutputStream2.writeUTF("Client 1 : " + text_chat_one.trim());
+                    dataOutputStream2.flush();
+
+                    dataOutputStream3.writeUTF("Client 1 : " + text_chat_one.trim());
+                    dataOutputStream3.flush();
                 }
             }catch (IOException ignored){}
         }).start();
