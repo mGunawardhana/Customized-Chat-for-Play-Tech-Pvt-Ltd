@@ -94,6 +94,14 @@ public class ServerFormController {
 
                     dataOutputStream2.writeUTF("Client 2 : " + message2.trim());
                     dataOutputStream2.flush();
+
+                    text_chat_two = message2;
+
+                    dataOutputStream.writeUTF("Client 2 : " + text_chat_two.trim());
+                    dataOutputStream.flush();
+
+                    dataOutputStream3.writeUTF("Client 2 : " + text_chat_two.trim());
+                    dataOutputStream3.flush();
                 }
 
             } catch (IOException ignored) {
