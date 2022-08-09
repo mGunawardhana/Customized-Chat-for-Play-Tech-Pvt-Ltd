@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ClientInitializer extends Application {
+public class ServerInitializer extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -19,7 +19,7 @@ public class ClientInitializer extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        primaryStage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("ui/ClientForm.fxml"))));
+        primaryStage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("ui/ServerForm.fxml"))));
         primaryStage.setResizable(false);
         primaryStage.show();
     }
