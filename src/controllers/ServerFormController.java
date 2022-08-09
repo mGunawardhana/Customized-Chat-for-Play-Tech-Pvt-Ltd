@@ -62,6 +62,24 @@ public class ServerFormController {
 
         //        Client two thread
         new Thread(() -> {
+            try {
+                serverSocket_client2 = new ServerSocket(port);
+                accept2 = serverSocket_client2.accept();
+                textArea.appendText("\nClient 2 Connected..");
+
+                dataInputStream2 = new DataInputStream(accept2.getInputStream());
+                dataOutputStream2 = new DataOutputStream(accept2.getOutputStream());
+
+                while (!message2.equals("exit")) {
+                    message2 = dataInputStream2.readUTF();
+                    textArea.appendText("\nClient 2 : " + message2);
+
+                    dataOutputStream2.writeUTF("Client 2 : " + message2.trim());
+                    dataOutputStream2.flush();
+                }
+
+            } catch (IOException ignored) {
+            }
 
         }).start();
     }
@@ -71,5 +89,7 @@ public class ServerFormController {
     void sendOnAction(ActionEvent event) throws IOException {
         dataOutputStream.writeUTF("Server : " + textMessage.getText().trim());
         dataOutputStream.flush();
+        dataOutputStream2.writeUTF("Server : " + textMessage.getText().trim());
+        dataOutputStream2.flush();
     }
 }
