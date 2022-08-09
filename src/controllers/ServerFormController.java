@@ -37,6 +37,12 @@ public class ServerFormController {
     DataOutputStream dataOutputStream2;
     String message2 = "";
 
+
+    ServerSocket serverSocket_client3;
+    Socket accept3;
+    DataInputStream dataInputStream3;
+    DataOutputStream dataOutputStream3;
+
     public void initialize(){
 
 //        client one thread
@@ -82,6 +88,8 @@ public class ServerFormController {
             }
 
         }).start();
+
+
     }
 
 
