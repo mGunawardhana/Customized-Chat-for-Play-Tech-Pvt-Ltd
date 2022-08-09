@@ -4,8 +4,8 @@
  * what's app - 071 - 9043372
  */
 
-*{
-    -fx-font-size: 17px;
-    -fx-font-family:'Robot', sans-serif;
-    -fx-padding: 2px;
+package controllers;
+
+public class LoginFormController {
+
 }
