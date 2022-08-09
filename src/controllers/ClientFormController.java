@@ -1,29 +1,28 @@
-/*
- * Developed by - mGunawardhana
- * Contact email - mrgunawardhana27368@gmail.com
- * what's app - 071 - 9043372
- */
-
 package controllers;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ClientFormController {
+
     final int PORT = 5000;
     Socket accept;
     DataInputStream dataInputStream;
     DataOutputStream dataOutputStream;
     String message = "";
 
-    public TextArea textArea;
-    public TextField textMessage;
+    @FXML
+    private TextArea textArea;
+    @FXML
+    private TextField textMessage;
 
     public void initialize() {
 
@@ -50,8 +49,10 @@ public class ClientFormController {
 
     }
 
-    public void sendOnAction(ActionEvent actionEvent) throws IOException {
+    @FXML
+    void sendOnAction(ActionEvent event) throws IOException {
         dataOutputStream.writeUTF(textMessage.getText().trim());
         dataOutputStream.flush();
+
     }
 }

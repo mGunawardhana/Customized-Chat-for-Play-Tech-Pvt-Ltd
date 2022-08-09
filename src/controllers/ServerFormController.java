@@ -31,8 +31,7 @@ public class ServerFormController {
     DataOutputStream dataOutputStream;
     String message = "";
 
-    @FXML
-    void sendOnAction(ActionEvent event) throws IOException {
+    public void initialize(){
 
 //        client one thread
         new Thread(() -> {
@@ -54,5 +53,12 @@ public class ServerFormController {
                 }
             }catch (IOException ignored){}
         }).start();
+    }
+
+
+    @FXML
+    void sendOnAction(ActionEvent event) throws IOException {
+        dataOutputStream.writeUTF("Server : " + textMessage.getText().trim());
+        dataOutputStream.flush();
     }
 }
