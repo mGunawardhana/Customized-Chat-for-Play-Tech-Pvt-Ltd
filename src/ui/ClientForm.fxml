@@ -17,7 +17,7 @@
             <Font name="System Bold" size="32.0" />
          </font>
       </Label>
-      <TextArea fx:id="textArea" editable="false" layoutX="22.0" layoutY="68.0" prefHeight="263.0" prefWidth="554.0" stylesheets="@../assets/style/Style.css">
+      <TextArea fx:id="textArea" editable="false" layoutX="22.0" layoutY="68.0" prefHeight="263.0" prefWidth="554.0" stylesheets="@../style/style.css">
          <font>
             <Font name="System Bold" size="16.0" />
          </font></TextArea>
