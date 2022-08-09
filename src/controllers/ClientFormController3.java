@@ -9,6 +9,7 @@ package controllers;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -50,4 +51,9 @@ public class ClientFormController3 {
         dataOutputStream3.flush();
     }
 
+    public void emoSendOnAction(MouseEvent mouseEvent) {
+    }
+
+    public void imageSendOnAction(MouseEvent mouseEvent) {
+    }
 }

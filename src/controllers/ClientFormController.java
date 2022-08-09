@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -54,5 +55,11 @@ public class ClientFormController {
         dataOutputStream.writeUTF(textMessage.getText().trim());
         dataOutputStream.flush();
 
+    }
+
+    public void emoSendOnAction(MouseEvent mouseEvent) {
+    }
+
+    public void imageSendOnAction(MouseEvent mouseEvent) {
     }
 }

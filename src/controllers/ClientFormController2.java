@@ -9,6 +9,7 @@ package controllers;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -49,5 +50,11 @@ public class ClientFormController2 {
     public void sendOnAction2(ActionEvent actionEvent) throws IOException {
         dataOutputStream2.writeUTF(textMessage2.getText().trim());
         dataOutputStream2.flush();
+    }
+
+    public void imoSendOnAction(MouseEvent mouseEvent) {
+    }
+
+    public void imageSendOnAction(MouseEvent mouseEvent) {
     }
 }

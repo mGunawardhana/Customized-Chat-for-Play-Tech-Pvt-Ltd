@@ -13,7 +13,12 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ClientFormController3">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#130f40" height="53.0" layoutY="346.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
-      <TextArea fx:id="textArea3" editable="false" layoutX="22.0" layoutY="68.0" prefHeight="263.0" prefWidth="554.0" stylesheets="@../style/style.css">
+      <ImageView fitHeight="220.0" fitWidth="220.0" layoutX="190.0" layoutY="90.0" pickOnBounds="true">
+         <image>
+            <Image url="@../assets/dreamer.gif" />
+         </image>
+      </ImageView>
+      <TextArea fx:id="textArea3" editable="false" layoutX="22.0" layoutY="68.0" opacity="0.7" prefHeight="263.0" prefWidth="554.0" stylesheets="@../style/style.css">
          <font>
             <Font name="System Bold" size="16.0" />
          </font></TextArea>
@@ -28,14 +33,19 @@
             <Font name="System Bold" size="32.0" />
          </font>
       </Label>
-      <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="26.0" layoutY="359.0" opacity="0.31" pickOnBounds="true">
+      <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="26.0" layoutY="359.0" onMouseClicked="#emoSendOnAction" opacity="0.31" pickOnBounds="true">
          <image>
             <Image url="@../assets/grin.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="432.0" layoutY="358.0" opacity="0.31" pickOnBounds="true">
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="432.0" layoutY="358.0" onMouseClicked="#imageSendOnAction" opacity="0.31" pickOnBounds="true">
          <image>
             <Image url="@../assets/camera%20(1).png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="53.0" fitWidth="70.0" layoutX="494.0" layoutY="6.0" pickOnBounds="true">
+         <image>
+            <Image url="@../assets/man.png" />
          </image>
       </ImageView>
    </children>
