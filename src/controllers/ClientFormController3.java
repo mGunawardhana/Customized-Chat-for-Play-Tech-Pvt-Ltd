@@ -13,8 +13,14 @@ public class ClientFormController3 {
 
     public TextArea textArea3;
     public TextField textMessage3;
+    final int port3 = 1234;
+    Socket socket3;
+    DataInputStream dataInputStream3;
+    DataOutputStream dataOutputStream3;
+    String message3 = "";
 
     public void initialize() {
+
     }
 
 
