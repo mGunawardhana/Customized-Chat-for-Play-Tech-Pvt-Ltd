@@ -25,6 +25,10 @@ public class ServerFormController {
     final int port = 8000;
     final int port3 = 1234;
 
+    private static String text_chat_one = "";
+    private static String text_chat_two = "";
+    private static String text_chat_three = "";
+
     Socket accept;
     ServerSocket serverSocket;
     DataInputStream dataInputStream;
