@@ -128,6 +128,13 @@ public class ServerFormController {
                     dataOutputStream3.writeUTF("Client 3 : " + message3.trim());
                     dataOutputStream3.flush();
 
+                    text_chat_three = message3;
+
+                    dataOutputStream.writeUTF("Client 3 : " + text_chat_three.trim());
+                    dataOutputStream.flush();
+
+                    dataOutputStream2.writeUTF("Client 3 : " + text_chat_three.trim());
+                    dataOutputStream2.flush();
 
                 }
 
