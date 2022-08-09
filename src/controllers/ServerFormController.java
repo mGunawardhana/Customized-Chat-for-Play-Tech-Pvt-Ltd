@@ -18,10 +18,12 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ServerFormController {
-
-
     public TextArea textArea;
     public TextField textMessage;
+
+    final int PORT = 5000;
+    final int port = 8000;
+    final int port3 = 1234;
 
     @FXML
     void sendOnAction(ActionEvent event) throws IOException {
