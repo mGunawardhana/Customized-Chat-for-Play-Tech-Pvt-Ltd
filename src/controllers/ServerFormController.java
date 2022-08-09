@@ -37,7 +37,7 @@ public class ServerFormController {
     DataOutputStream dataOutputStream2;
     String message2 = "";
 
-
+    static String message3 = "";
     ServerSocket serverSocket_client3;
     Socket accept3;
     DataInputStream dataInputStream3;
@@ -90,6 +90,31 @@ public class ServerFormController {
         }).start();
 
 
+        //        Client three thread
+        new Thread(() -> {
+            try {
+                serverSocket_client3 = new ServerSocket(port3);
+                accept3 = serverSocket_client3.accept();
+                textArea.appendText("\nClient 3 Connected..");
+
+                dataInputStream3 = new DataInputStream(accept3.getInputStream());
+                dataOutputStream3 = new DataOutputStream(accept3.getOutputStream());
+
+                while (!message3.equals("exit")) {
+
+                    message3 = dataInputStream3.readUTF();
+                    textArea.appendText("\nClient 3 : " + message3);
+
+                    dataOutputStream3.writeUTF("Client 3 : " + message3.trim());
+                    dataOutputStream3.flush();
+
+
+                }
+
+            } catch (IOException ignored) {
+            }
+
+        }).start();
     }
 
 
@@ -99,5 +124,7 @@ public class ServerFormController {
         dataOutputStream.flush();
         dataOutputStream2.writeUTF("Server : " + textMessage.getText().trim());
         dataOutputStream2.flush();
+        dataOutputStream3.writeUTF("Server : " + textMessage.getText().trim());
+        dataOutputStream3.flush();
     }
 }
