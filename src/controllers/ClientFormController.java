@@ -46,7 +46,7 @@ public class ClientFormController {
                 while (!message.equals("exit")) {
 
                     message = dataInputStream.readUTF();
-                    textArea.appendText(message + emo1 + emo2 + emo3 + "\n");
+                    textArea.appendText(message+"\n");
                 }
 
                 dataOutputStream.writeUTF(message.trim() + emo1 + emo2 + emo3);
@@ -65,7 +65,8 @@ public class ClientFormController {
 
     @FXML
     void sendOnAction(ActionEvent event) throws IOException {
-        dataOutputStream.writeUTF(textMessage.getText().trim());
+        dataOutputStream.writeUTF(
+                textMessage.getText().trim() + emo1 + emo2 + emo3);
         dataOutputStream.flush();
 
     }

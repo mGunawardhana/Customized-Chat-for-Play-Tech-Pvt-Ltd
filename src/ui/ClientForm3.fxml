@@ -22,7 +22,7 @@
          <font>
             <Font name="System Bold" size="16.0" />
          </font></TextArea>
-      <TextField fx:id="textMessage3" layoutX="22.0" layoutY="358.0" prefHeight="26.0" prefWidth="445.0" />
+      <TextField fx:id="textMessage3" layoutX="62.0" layoutY="358.0" onMouseClicked="#textMessage3" prefHeight="31.0" prefWidth="405.0" />
       <Button layoutX="496.0" layoutY="354.0" mnemonicParsing="false" onAction="#sendOnAction3" prefHeight="31.0" prefWidth="76.0" style="-fx-background-color: rgb(46, 204, 113);" text="Send">
          <font>
             <Font name="System Bold" size="16.0" />
@@ -33,9 +33,9 @@
             <Font name="System Bold" size="32.0" />
          </font>
       </Label>
-      <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="26.0" layoutY="359.0" onMouseClicked="#emoSendOnAction" opacity="0.31" pickOnBounds="true">
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="16.0" layoutY="359.0" onMouseClicked="#emoSendOnAction" pickOnBounds="true">
          <image>
-            <Image url="@../assets/grin.png" />
+            <Image url="@../assets/emoji%20(1).png" />
          </image>
       </ImageView>
       <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="432.0" layoutY="358.0" onMouseClicked="#imageSendOnAction" opacity="0.31" pickOnBounds="true">
@@ -48,5 +48,24 @@
             <Image url="@../assets/man.png" />
          </image>
       </ImageView>
+      <AnchorPane fx:id="emojiPane" layoutX="3.0" layoutY="261.0" prefHeight="81.0" prefWidth="175.0" style="-fx-background-color: #2f3542; -fx-background-radius: 10;">
+         <children>
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="12.0" layoutY="25.0" onMouseClicked="#l1emoOnAction" pickOnBounds="true">
+               <image>
+                  <Image url="@../assets/smile%20(1).png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="71.0" layoutY="26.0" onMouseClicked="#l2emoOnAction" pickOnBounds="true">
+               <image>
+                  <Image url="@../assets/emoji.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="131.0" layoutY="25.0" onMouseClicked="#l3emoOnAction" pickOnBounds="true">
+               <image>
+                  <Image url="@../assets/happy.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

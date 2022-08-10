@@ -32,7 +32,7 @@
          <font>
             <Font name="System Bold" size="16.0" />
          </font></TextArea>
-      <TextField fx:id="textMessage" layoutX="19.0" layoutY="360.0" onMouseClicked="#textMessage" prefHeight="26.0" prefWidth="445.0" />
+      <TextField fx:id="textMessage" layoutX="64.0" layoutY="360.0" onMouseClicked="#textMessage" prefHeight="31.0" prefWidth="400.0" />
       <Button layoutX="499.0" layoutY="356.0" mnemonicParsing="false" onAction="#sendOnAction" prefHeight="31.0" prefWidth="76.0" style="-fx-background-color: rgb(46, 204, 113);" text="Send">
          <font>
             <Font name="System Bold" size="16.0" />
@@ -42,9 +42,9 @@
             <Image url="@../assets/boy.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="24.0" layoutY="362.0" onMouseClicked="#emoSendOnAction" opacity="0.31" pickOnBounds="true">
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="13.0" layoutY="362.0" onMouseClicked="#emoSendOnAction" pickOnBounds="true">
          <image>
-            <Image url="@../assets/grin.png" />
+            <Image url="@../assets/emoji%20(1).png" />
          </image>
       </ImageView>
       <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="429.0" layoutY="360.0" onMouseClicked="#imageSendOnAction" opacity="0.31" pickOnBounds="true">
