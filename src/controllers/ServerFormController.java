@@ -18,40 +18,35 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ServerFormController {
-    public TextArea textArea;
-    public TextField textMessage;
-
-    final int PORT = 5000;
-    final int port = 8000;
-    final int port3 = 1234;
-
+    static String message3 = "";
     private static String text_chat_one = "";
     private static String text_chat_two = "";
     private static String text_chat_three = "";
-
+    final int PORT = 5000;
+    final int port = 8000;
+    final int port3 = 1234;
+    public TextArea textArea;
+    public TextField textMessage;
     Socket accept;
     ServerSocket serverSocket;
     DataInputStream dataInputStream;
     DataOutputStream dataOutputStream;
     String message = "";
-
     ServerSocket serverSocket_client2;
     Socket accept2;
     DataInputStream dataInputStream2;
     DataOutputStream dataOutputStream2;
     String message2 = "";
-
-    static String message3 = "";
     ServerSocket serverSocket_client3;
     Socket accept3;
     DataInputStream dataInputStream3;
     DataOutputStream dataOutputStream3;
 
-    public void initialize(){
+    public void initialize() {
 
 //        client one thread
         new Thread(() -> {
-            try{
+            try {
                 serverSocket = new ServerSocket(PORT);
                 textArea.appendText("Server Started..\n");
                 accept = serverSocket.accept();
@@ -75,7 +70,14 @@ public class ServerFormController {
                     dataOutputStream3.writeUTF("Client 1 : " + text_chat_one.trim());
                     dataOutputStream3.flush();
                 }
-            }catch (IOException ignored){}
+
+                serverSocket.close();
+                dataOutputStream.close();
+                dataOutputStream2.close();
+                dataOutputStream3.close();
+
+            } catch (IOException ignored) {}
+
         }).start();
 
         //        Client two thread
@@ -104,8 +106,12 @@ public class ServerFormController {
                     dataOutputStream3.flush();
                 }
 
-            } catch (IOException ignored) {
-            }
+                serverSocket_client2.close();
+                dataOutputStream.close();
+                dataOutputStream2.close();
+                dataOutputStream3.close();
+
+            } catch (IOException ignored) {}
 
         }).start();
 
@@ -138,8 +144,12 @@ public class ServerFormController {
 
                 }
 
-            } catch (IOException ignored) {
-            }
+                serverSocket_client3.close();
+                dataOutputStream.close();
+                dataOutputStream2.close();
+                dataOutputStream3.close();
+
+            } catch (IOException ignored) {}
 
         }).start();
     }

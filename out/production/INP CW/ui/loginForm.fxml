@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<!--
+  ~ Developed by - mGunawardhana
+  ~ Contact email - mrgunawardhana27368@gmail.com
+  ~ what's app - 071 - 9043372
+  -->
+
+<AnchorPane prefHeight="731.0" prefWidth="506.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginFormController">
+   <children>
+      <ImageView fitHeight="473.0" fitWidth="462.0" layoutX="22.0" layoutY="23.0" pickOnBounds="true">
+         <image>
+            <Image url="@../assets/unnamed-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <TextField layoutX="57.0" layoutY="559.0" prefHeight="45.0" prefWidth="394.0" promptText="User Name" style="-fx-background-radius: 15;" />
+      <TextField layoutX="59.0" layoutY="616.0" prefHeight="45.0" prefWidth="394.0" promptText="Password" style="-fx-background-radius: 15;" />
+   </children>
+</AnchorPane>

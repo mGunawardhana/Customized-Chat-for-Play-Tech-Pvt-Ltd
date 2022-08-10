@@ -40,8 +40,11 @@ public class ClientFormController3 {
                     textArea3.appendText(message3+"\n");
                 }
 
-            } catch (IOException ignored) {
-            }
+                socket3.close();
+                dataOutputStream3.close();
+                dataInputStream3.close();
+
+            } catch (IOException ignored) {}
         }).start();
     }
 

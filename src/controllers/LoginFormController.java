@@ -6,6 +6,15 @@
 
 package controllers;
 
+import javafx.event.ActionEvent;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+
 public class LoginFormController {
 
+    public TextField userNameTxt;
+    public PasswordField passwordField;
+
+    public void loginOnAction(ActionEvent actionEvent) {
+    }
 }

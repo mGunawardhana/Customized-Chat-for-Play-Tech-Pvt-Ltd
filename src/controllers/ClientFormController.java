@@ -36,6 +36,7 @@ public class ClientFormController {
                 dataOutputStream = new DataOutputStream(accept.getOutputStream());
 
                 while (!message.equals("exit")) {
+
                     message = dataInputStream.readUTF();
                     textArea.appendText(message + "\n");
                 }
@@ -43,8 +44,11 @@ public class ClientFormController {
                 dataOutputStream.writeUTF(message.trim());
                 dataOutputStream.flush();
 
-            } catch (IOException ignored) {
-            }
+                accept.close();
+                dataOutputStream.close();
+                dataInputStream.close();
+
+            } catch (IOException ignored) {}
 
         }).start();
 

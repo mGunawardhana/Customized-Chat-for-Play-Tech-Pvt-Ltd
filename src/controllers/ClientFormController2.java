@@ -30,20 +30,24 @@ public class ClientFormController2 {
         new Thread(() -> {
 
             try {
-                socket2 = new Socket("localhost", PORT);
 
+                socket2 = new Socket("localhost", PORT);
 
                 dataOutputStream2 = new DataOutputStream(socket2.getOutputStream());
                 dataInputStream2 = new DataInputStream(socket2.getInputStream());
 
                 while (!message2.equals("exit")) {
+
                     message2 = dataInputStream2.readUTF();
                     textArea2.appendText(message2 + "\n");
 
                 }
 
-            } catch (IOException ignored) {
-            }
+                socket2.close();
+                dataOutputStream2.close();
+                dataInputStream2.close();
+
+            } catch (IOException ignored) {}
 
         }).start();
     }
