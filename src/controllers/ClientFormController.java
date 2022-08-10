@@ -5,16 +5,20 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ClientFormController {
 
+    static String emo1 = "";
+    static String emo2 = "";
+    static String emo3 = "";
     final int PORT = 5000;
+    public AnchorPane emojiPane;
     Socket accept;
     DataInputStream dataInputStream;
     DataOutputStream dataOutputStream;
@@ -26,7 +30,11 @@ public class ClientFormController {
     private TextField textMessage;
 
     public void initialize() {
+        emo1 = "";
+        emo2 = "";
+        emo3 = "";
 
+        emojiPane.setVisible(false);
         new Thread(() -> {
             try {
 
@@ -38,17 +46,18 @@ public class ClientFormController {
                 while (!message.equals("exit")) {
 
                     message = dataInputStream.readUTF();
-                    textArea.appendText(message + "\n");
+                    textArea.appendText(message + emo1 + emo2 + emo3 + "\n");
                 }
 
-                dataOutputStream.writeUTF(message.trim());
+                dataOutputStream.writeUTF(message.trim() + emo1 + emo2 + emo3);
                 dataOutputStream.flush();
 
                 accept.close();
                 dataOutputStream.close();
                 dataInputStream.close();
 
-            } catch (IOException ignored) {}
+            } catch (IOException ignored) {
+            }
 
         }).start();
 
@@ -62,8 +71,25 @@ public class ClientFormController {
     }
 
     public void emoSendOnAction(MouseEvent mouseEvent) {
+        emojiPane.setVisible(true);
     }
 
     public void imageSendOnAction(MouseEvent mouseEvent) {
+    }
+
+    public void textMessage(MouseEvent mouseEvent) {
+        emojiPane.setVisible(false);
+    }
+
+    public void l1emoOnAction(MouseEvent mouseEvent) {
+        emo1 = "\uD83D\uDE42";
+    }
+
+    public void l2emoOnAction(MouseEvent mouseEvent) {
+        emo2 = "\uD83D\uDE0D";
+    }
+
+    public void l3emoOnAction(MouseEvent mouseEvent) {
+        emo3 = "\uD83E\uDD2A";
     }
 }

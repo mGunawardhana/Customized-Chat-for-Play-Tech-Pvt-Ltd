@@ -32,6 +32,8 @@ public class LoginFormController {
         } else if (userNameTxt.getText().trim().equals("null")) {
             if (passwordField.getText().trim().equals("12345")) {
                 //TODO : load here in client three
+            } else {
+                System.out.println("Incorrect try!");
             }
         } else {
             System.exit(0);

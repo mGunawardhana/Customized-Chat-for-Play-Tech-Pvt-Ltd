@@ -32,7 +32,7 @@
          <font>
             <Font name="System Bold" size="16.0" />
          </font></TextArea>
-      <TextField fx:id="textMessage" layoutX="19.0" layoutY="360.0" prefHeight="26.0" prefWidth="445.0" />
+      <TextField fx:id="textMessage" layoutX="19.0" layoutY="360.0" onMouseClicked="#textMessage" prefHeight="26.0" prefWidth="445.0" />
       <Button layoutX="499.0" layoutY="356.0" mnemonicParsing="false" onAction="#sendOnAction" prefHeight="31.0" prefWidth="76.0" style="-fx-background-color: rgb(46, 204, 113);" text="Send">
          <font>
             <Font name="System Bold" size="16.0" />
@@ -52,5 +52,23 @@
             <Image url="@../assets/camera%20(1).png" />
          </image>
       </ImageView>
+      <AnchorPane fx:id="emojiPane" layoutX="5.0" layoutY="263.0" prefHeight="81.0" prefWidth="175.0" style="-fx-background-color: #2f3542; -fx-background-radius: 10;">
+         <children>
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="12.0" layoutY="25.0" onMouseClicked="#l1emoOnAction" pickOnBounds="true">
+               <image>
+                  <Image url="@../assets/smile%20(1).png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="71.0" layoutY="26.0" onMouseClicked="#l2emoOnAction" pickOnBounds="true">
+               <image>
+                  <Image url="@../assets/emoji.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="131.0" layoutY="25.0" onMouseClicked="#l3emoOnAction" pickOnBounds="true">
+               <image>
+                  <Image url="@../assets/happy.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
    </children>
 </AnchorPane>
