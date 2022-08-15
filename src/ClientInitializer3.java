@@ -15,6 +15,7 @@ public class ClientInitializer3 extends Application {
     public void start(Stage primaryStage) throws IOException {
         primaryStage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("ui/ClientForm3.fxml"))));
         primaryStage.setResizable(false);
+        primaryStage.setTitle("M - CHAT - free with your friends ❤️ ");
         primaryStage.show();
     }
 }

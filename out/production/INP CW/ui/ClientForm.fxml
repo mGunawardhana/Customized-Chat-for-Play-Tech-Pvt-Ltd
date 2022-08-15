@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ClientFormController">
+<AnchorPane fx:id="clientOneAnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ClientFormController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#130f40" height="53.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#130f40" height="53.0" layoutY="348.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />

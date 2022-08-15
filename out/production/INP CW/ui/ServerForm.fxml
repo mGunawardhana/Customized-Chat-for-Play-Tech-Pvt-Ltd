@@ -8,6 +8,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -15,7 +17,12 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ServerFormController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b71540" height="53.0" layoutY="347.0" stroke="#da0000" strokeType="INSIDE" width="600.0" />
-      <TextArea fx:id="textArea" editable="false" layoutX="14.0" layoutY="75.0" prefHeight="251.0" prefWidth="559.0" stylesheets="@../style/style.css">
+      <ImageView fitHeight="222.0" fitWidth="248.0" layoutX="170.0" layoutY="89.0" pickOnBounds="true">
+         <image>
+            <Image url="@../assets/ready-to-go.png" />
+         </image>
+      </ImageView>
+      <TextArea fx:id="textArea" editable="false" layoutX="14.0" layoutY="75.0" opacity="0.75" prefHeight="251.0" prefWidth="559.0" stylesheets="@../style/style.css">
          <font>
             <Font name="System Bold" size="16.0" />
          </font></TextArea>

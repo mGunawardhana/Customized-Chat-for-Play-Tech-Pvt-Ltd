@@ -7,38 +7,67 @@
 package controllers;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class LoginFormController {
 
     public TextField userNameTxt;
     public PasswordField passwordField;
+    public int count;
+    public AnchorPane LoginAnchorPane;
 
-    public void loginOnAction(ActionEvent actionEvent) {
+    public void loginOnAction(ActionEvent actionEvent) throws IOException {
 
         if (userNameTxt.getText().trim().equals("maneesha")) {
             if (passwordField.getText().trim().equals("12345")) {
-                //TODO : load here in client one
-            } else {
-                System.out.println("Incorrect try!");
-            }
-        } else if (userNameTxt.getText().trim().equals("sasmitha")) {
-            if (passwordField.getText().trim().equals("12345")) {
-                //TODO : load here in client two
-            } else {
-                System.out.println("Incorrect try!");
-            }
-        } else if (userNameTxt.getText().trim().equals("null")) {
-            if (passwordField.getText().trim().equals("12345")) {
-                //TODO : load here in client three
-            } else {
-                System.out.println("Incorrect try!");
-            }
-        } else {
-            System.exit(0);
-        }
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../ui/ClientForm.fxml"));
+                Parent parent = fxmlLoader.load();
+                Scene scene = new Scene(parent);
+                ClientFormController clientFormController = fxmlLoader.getController();
+                clientFormController.setController(LoginAnchorPane);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.show();
 
+                userNameTxt.clear();
+                passwordField.clear();
+            }
+        } else if (userNameTxt.getText().trim().equals("bashi")) {
+            if (passwordField.getText().trim().equals("12345")) {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../ui/ClientForm2.fxml"));
+                Parent parent = fxmlLoader.load();
+                Scene scene = new Scene(parent);
+                ClientFormController2 clientFormController2 = fxmlLoader.getController();
+                clientFormController2.setController2(LoginAnchorPane);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.show();
+
+                userNameTxt.clear();
+                passwordField.clear();
+            }
+        } else if (userNameTxt.getText().trim().equals("dinusha")) {
+            if (passwordField.getText().trim().equals("12345")) {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../ui/ClientForm3.fxml"));
+                Parent parent = fxmlLoader.load();
+                Scene scene = new Scene(parent);
+                ClientFormController3 clientFormController3 = fxmlLoader.getController();
+                clientFormController3.setController3(LoginAnchorPane);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.show();
+
+                userNameTxt.clear();
+                passwordField.clear();
+            }
+        }
     }
 }
-

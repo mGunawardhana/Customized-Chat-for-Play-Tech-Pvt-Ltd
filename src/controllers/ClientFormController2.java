@@ -20,13 +20,22 @@ import java.io.IOException;
 import java.net.Socket;
 
 public class ClientFormController2 {
+
+    /* emoji unicode holders */
     static String emo1 = "";
     static String emo2 = "";
     static String emo3 = "";
+
+    /* client one port */
     final int PORT = 8000;
+
     public TextArea textArea2;
     public TextField textMessage2;
+
+    /* emoji tab */
     public AnchorPane emojiPane;
+    public AnchorPane clientForm3;
+
     Socket socket2;
     DataInputStream dataInputStream2;
     DataOutputStream dataOutputStream2;
@@ -47,8 +56,8 @@ public class ClientFormController2 {
                 dataOutputStream2 = new DataOutputStream(socket2.getOutputStream());
                 dataInputStream2 = new DataInputStream(socket2.getInputStream());
 
+                /* getting / reading messages from server side */
                 while (!message2.equals("exit")) {
-
                     message2 = dataInputStream2.readUTF();
                     textArea2.appendText(message2 + "\n");
 
@@ -65,13 +74,19 @@ public class ClientFormController2 {
     }
 
     public void sendOnAction2(ActionEvent actionEvent) throws IOException {
-        dataOutputStream2.writeUTF(textMessage2.getText().trim()+ emo1 + emo2 + emo3);
+
+        /* sending message to server side */
+        dataOutputStream2.writeUTF(textMessage2.getText().trim() + emo1 + emo2 + emo3);
         dataOutputStream2.flush();
     }
 
     public void emoSendOnAction(MouseEvent mouseEvent) {
         emojiPane.setVisible(true);
     }
+
+
+
+
 
     public void imageSendOnAction(MouseEvent mouseEvent) {
         FileChooser fileChooser = new FileChooser();
@@ -80,18 +95,22 @@ public class ClientFormController2 {
     }
 
     public void l1emoOnAction(MouseEvent mouseEvent) {
-        emo1 = "\uD83D\uDE42";
+        textMessage2.setText(textMessage2.getText()+ "\uD83D\uDE42");
     }
 
     public void l2emoOnAction(MouseEvent mouseEvent) {
-        emo2 = "\uD83D\uDE0D";
+        textMessage2.setText(textMessage2.getText()+"\uD83D\uDE0D");
     }
 
     public void l3emoOnAction(MouseEvent mouseEvent) {
-        emo3 = "\uD83E\uDD2A";
+        textMessage2.setText(textMessage2.getText()+"\uD83E\uDD2A");
     }
 
     public void textMessage(MouseEvent mouseEvent) {
         emojiPane.setVisible(false);
+    }
+
+    public void setController2(AnchorPane anchorPane){
+        this.clientForm3=anchorPane;
     }
 }

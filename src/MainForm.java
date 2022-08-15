@@ -19,8 +19,9 @@ public class MainForm extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        primaryStage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("ui/loginForm.fxml"))));
+        primaryStage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("ui/LoginForm.fxml"))));
         primaryStage.setResizable(false);
+        primaryStage.setTitle("M - CHAT - free with your friends ❤️ ");
         primaryStage.show();
     }
 }

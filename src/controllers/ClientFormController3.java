@@ -20,13 +20,28 @@ import java.io.IOException;
 import java.net.Socket;
 
 public class ClientFormController3 {
+
+    /**
+     * emoji unicode holders
+     */
     static String emo1 = "";
     static String emo2 = "";
     static String emo3 = "";
+
+    /**
+     * client one port
+     */
     final int port3 = 1234;
+
     public TextArea textArea3;
     public TextField textMessage3;
+
+    /**
+     * emoji tab
+     */
     public AnchorPane emojiPane;
+    public AnchorPane clientAnchorPane3;
+
     Socket socket3;
     DataInputStream dataInputStream3;
     DataOutputStream dataOutputStream3;
@@ -67,7 +82,7 @@ public class ClientFormController3 {
     }
 
     public void emoSendOnAction(MouseEvent mouseEvent) {
-
+        emojiPane.setVisible(true);
     }
 
     public void imageSendOnAction(MouseEvent mouseEvent) {
@@ -77,18 +92,25 @@ public class ClientFormController3 {
     }
 
     public void l1emoOnAction(MouseEvent mouseEvent) {
-        emo1 = "\uD83D\uDE42";
+        textMessage3.setText(textMessage3.getText()+"\uD83D\uDE42");
+//        emo1 = "\uD83D\uDE42";
     }
 
     public void l2emoOnAction(MouseEvent mouseEvent) {
-        emo2 = "\uD83D\uDE0D";
+        textMessage3.setText(textMessage3.getText()+"\uD83D\uDE0D");
+//        emo2 = "\uD83D\uDE0D";
     }
 
     public void l3emoOnAction(MouseEvent mouseEvent) {
-        emo3 = "\uD83E\uDD2A";
+        textMessage3.setText(textMessage3.getText()+"\uD83E\uDD2A");
+//        emo3 = "\uD83E\uDD2A";
     }
 
     public void textMessage3(MouseEvent mouseEvent) {
-        emojiPane.setVisible(true);
+        emojiPane.setVisible(false);
+    }
+
+    public void setController3(AnchorPane anchorPane){
+        this.clientAnchorPane3=anchorPane;
     }
 }
