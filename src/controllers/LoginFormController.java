@@ -21,11 +21,13 @@ public class LoginFormController {
 
     public TextField userNameTxt;
     public PasswordField passwordField;
-    public int count;
     public AnchorPane LoginAnchorPane;
 
     public void loginOnAction(ActionEvent actionEvent) throws IOException {
 
+        /* client one form loading on action */
+
+        /* checking requirements for client one -------------------------------------------------------- */
         if (userNameTxt.getText().trim().equals("maneesha")) {
             if (passwordField.getText().trim().equals("12345")) {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../ui/ClientForm.fxml"));
@@ -40,6 +42,10 @@ public class LoginFormController {
                 userNameTxt.clear();
                 passwordField.clear();
             }
+
+            /* client two form loading option */
+
+            /* checking requirements for client two -------------------------------------------------------- */
         } else if (userNameTxt.getText().trim().equals("bashi")) {
             if (passwordField.getText().trim().equals("12345")) {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../ui/ClientForm2.fxml"));
@@ -54,6 +60,10 @@ public class LoginFormController {
                 userNameTxt.clear();
                 passwordField.clear();
             }
+
+            /* client three form loading option */
+
+            /* checking requirements for client three -------------------------------------------------------- */
         } else if (userNameTxt.getText().trim().equals("dinusha")) {
             if (passwordField.getText().trim().equals("12345")) {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../ui/ClientForm3.fxml"));

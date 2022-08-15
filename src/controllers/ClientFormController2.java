@@ -7,6 +7,7 @@
 package controllers;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -29,17 +30,25 @@ public class ClientFormController2 {
     /* client one port */
     final int PORT = 8000;
 
-    public TextArea textArea2;
-    public TextField textMessage2;
-
     /* emoji tab */
     public AnchorPane emojiPane;
     public AnchorPane clientForm3;
 
+    /* initializing socket */
     Socket socket2;
+
+    /* initializing dataInputStream and dataOutputStream */
     DataInputStream dataInputStream2;
     DataOutputStream dataOutputStream2;
+
+    /* initializing String var for holding InputStream and OutputStream value */
     String message2 = "";
+
+    @FXML
+    public TextArea textArea2;
+
+    @FXML
+    public TextField textMessage2;
 
     public void initialize() {
         emo1 = "";
@@ -73,27 +82,30 @@ public class ClientFormController2 {
         }).start();
     }
 
+    /* text message sender - on action */
     public void sendOnAction2(ActionEvent actionEvent) throws IOException {
-
-        /* sending message to server side */
         dataOutputStream2.writeUTF(textMessage2.getText().trim() + emo1 + emo2 + emo3);
         dataOutputStream2.flush();
     }
 
+    /* on action for opening emoji window */
     public void emoSendOnAction(MouseEvent mouseEvent) {
         emojiPane.setVisible(true);
     }
 
-
-
-
-
+    /* setting up file chooser for client two */
     public void imageSendOnAction(MouseEvent mouseEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         fileChooser.showOpenDialog(new Stage());
     }
 
+    /* emoji pane disabling on-action */
+    public void textMessage(MouseEvent mouseEvent) {
+        emojiPane.setVisible(false);
+    }
+
+    /* emoji unicode assigning section -------------- */
     public void l1emoOnAction(MouseEvent mouseEvent) {
         textMessage2.setText(textMessage2.getText()+ "\uD83D\uDE42");
     }
@@ -104,10 +116,6 @@ public class ClientFormController2 {
 
     public void l3emoOnAction(MouseEvent mouseEvent) {
         textMessage2.setText(textMessage2.getText()+"\uD83E\uDD2A");
-    }
-
-    public void textMessage(MouseEvent mouseEvent) {
-        emojiPane.setVisible(false);
     }
 
     public void setController2(AnchorPane anchorPane){

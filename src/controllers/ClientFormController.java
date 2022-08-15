@@ -16,31 +16,32 @@ import java.net.Socket;
 
 public class ClientFormController {
 
-    /**
-     * emoji unicode holders
-     */
+
+    /* emoji unicode holders */
     static String emo1 = "";
     static String emo2 = "";
     static String emo3 = "";
 
-    /**
-     * client one port
-     */
+    /* client one port */
     final int PORT = 5000;
 
-    /**
-     * emoji tab
-     */
+    /* emoji tab */
     public AnchorPane emojiPane;
     public AnchorPane clientOneAnchorPane;
 
+    /* initializing socket */
     Socket accept;
+
+    /* initializing dataInputStream and dataOutputStream */
     DataInputStream dataInputStream;
     DataOutputStream dataOutputStream;
+
+    /* initializing String var for holding InputStream and OutputStream value */
     String message = "";
 
     @FXML
     private TextArea textArea;
+
     @FXML
     private TextField textMessage;
 
@@ -80,50 +81,46 @@ public class ClientFormController {
 
     }
 
+    /* text message sender - on action */
     @FXML
     void sendOnAction(ActionEvent event) throws IOException {
         dataOutputStream.writeUTF(
                 textMessage.getText().trim() + emo1 + emo2 + emo3);
         dataOutputStream.flush();
-        emojiPane.setVisible(false);/////////////////////////////////////////////////////////////////
+        emojiPane.setVisible(false);
     }
 
-    /**
-     * on action for opening emoji window
-     */
+    /* on action for opening emoji window */
     public void emoSendOnAction(MouseEvent mouseEvent) {
         emojiPane.setVisible(true);
     }
 
+    /* setting up file chooser for client one */
     public void imageSendOnAction(MouseEvent mouseEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         fileChooser.showOpenDialog(new Stage());
     }
 
-    /**
-     * emoji pane disabling on-action
-     */
+    /* emoji pane disabling on-action */
     public void textMessage(MouseEvent mouseEvent) {
         emojiPane.setVisible(false);
     }
 
-    /**
-     * emoji unicode assigning section
-     */
+    /* emoji unicode assigning section */
     public void l1emoOnAction(MouseEvent mouseEvent) {
-        textMessage.setText(textMessage.getText()+"\uD83D\uDE42");
+        textMessage.setText(textMessage.getText() + "\uD83D\uDE42");
     }
 
     public void l2emoOnAction(MouseEvent mouseEvent) {
-        textMessage.setText(textMessage.getText()+"\uD83D\uDE0D");
+        textMessage.setText(textMessage.getText() + "\uD83D\uDE0D");
     }
 
-    public void l3emoOnAction(MouseEvent mouseEvent){
-        textMessage.setText(textMessage.getText()+"\uD83E\uDD2A");
+    public void l3emoOnAction(MouseEvent mouseEvent) {
+        textMessage.setText(textMessage.getText() + "\uD83E\uDD2A");
     }
 
-    public void setController(AnchorPane anchorPane){
-        this.clientOneAnchorPane=anchorPane;
+    public void setController(AnchorPane anchorPane) {
+        this.clientOneAnchorPane = anchorPane;
     }
 }

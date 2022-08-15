@@ -18,33 +18,46 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ServerFormController {
+
     static String message3 = "";
+
+    /* initializing static string holders for catching messages */
     private static String text_chat_one = "";
     private static String text_chat_two = "";
     private static String text_chat_three = "";
+
+    /* initializing port numbers to interact with clients */
     final int PORT = 5000;
     final int port = 8000;
     final int port3 = 1234;
     public TextArea textArea;
     public TextField textMessage;
+
+    /* initializing String var for holding InputStream and OutputStream value */
+    String message = "";
+    String message2 = "";
+
+    /* initializing sockets to connect with Clients */
     Socket accept;
-    ServerSocket serverSocket;
+    Socket accept2;
+    Socket accept3;
+
+    /* initializing pack of dataInputStream and dataOutputStream */
     DataInputStream dataInputStream;
     DataOutputStream dataOutputStream;
-    String message = "";
-    ServerSocket serverSocket_client2;
-    Socket accept2;
     DataInputStream dataInputStream2;
     DataOutputStream dataOutputStream2;
-    String message2 = "";
-    ServerSocket serverSocket_client3;
-    Socket accept3;
     DataInputStream dataInputStream3;
     DataOutputStream dataOutputStream3;
 
+    /* initializing server sockets */
+    ServerSocket serverSocket;
+    ServerSocket serverSocket_client2;
+    ServerSocket serverSocket_client3;
+
     public void initialize() {
 
-//        client one thread
+        /* client one thread */
         new Thread(() -> {
             try {
                 serverSocket = new ServerSocket(PORT);
@@ -52,6 +65,7 @@ public class ServerFormController {
                 accept = serverSocket.accept();
                 textArea.appendText("\nClient 1 Connected..");
 
+                /* accepting input and output streams */
                 dataInputStream = new DataInputStream(accept.getInputStream());
                 dataOutputStream = new DataOutputStream(accept.getOutputStream());
 
@@ -64,29 +78,36 @@ public class ServerFormController {
 
                     text_chat_one = message;
 
+                    /* sending client one message to client two */
                     dataOutputStream2.writeUTF("Client 1 : " + text_chat_one.trim());
                     dataOutputStream2.flush();
 
+                    /* sending client one message to client three */
                     dataOutputStream3.writeUTF("Client 1 : " + text_chat_one.trim());
                     dataOutputStream3.flush();
                 }
 
+                /* closing server socket */
                 serverSocket.close();
+
+                /* closing input and output streams */
                 dataOutputStream.close();
                 dataOutputStream2.close();
                 dataOutputStream3.close();
 
-            } catch (IOException ignored) {}
+            } catch (IOException ignored) {
+            }
 
         }).start();
 
-        //        Client two thread
+        /* client two thread */
         new Thread(() -> {
             try {
                 serverSocket_client2 = new ServerSocket(port);
                 accept2 = serverSocket_client2.accept();
                 textArea.appendText("\nClient 2 Connected..");
 
+                /* accepting input and output streams */
                 dataInputStream2 = new DataInputStream(accept2.getInputStream());
                 dataOutputStream2 = new DataOutputStream(accept2.getOutputStream());
 
@@ -99,19 +120,25 @@ public class ServerFormController {
 
                     text_chat_two = message2;
 
+                    /* sending client two message to client two */
                     dataOutputStream.writeUTF("Client 2 : " + text_chat_two.trim());
                     dataOutputStream.flush();
 
+                    /* sending client two message to client three */
                     dataOutputStream3.writeUTF("Client 2 : " + text_chat_two.trim());
                     dataOutputStream3.flush();
                 }
 
+                /* closing server socket */
                 serverSocket_client2.close();
+
+                /* closing input and output streams */
                 dataOutputStream.close();
                 dataOutputStream2.close();
                 dataOutputStream3.close();
 
-            } catch (IOException ignored) {}
+            } catch (IOException ignored) {
+            }
 
         }).start();
 
@@ -123,6 +150,7 @@ public class ServerFormController {
                 accept3 = serverSocket_client3.accept();
                 textArea.appendText("\nClient 3 Connected..");
 
+                /* accepting input and output streams */
                 dataInputStream3 = new DataInputStream(accept3.getInputStream());
                 dataOutputStream3 = new DataOutputStream(accept3.getOutputStream());
 
@@ -136,20 +164,26 @@ public class ServerFormController {
 
                     text_chat_three = message3;
 
+                    /* sending client three message to client three */
                     dataOutputStream.writeUTF("Client 3 : " + text_chat_three.trim());
                     dataOutputStream.flush();
 
+                    /* sending client three message to client three */
                     dataOutputStream2.writeUTF("Client 3 : " + text_chat_three.trim());
                     dataOutputStream2.flush();
 
                 }
 
+                /* closing server socket */
                 serverSocket_client3.close();
+
+                /* closing input and output streams */
                 dataOutputStream.close();
                 dataOutputStream2.close();
                 dataOutputStream3.close();
 
-            } catch (IOException ignored) {}
+            } catch (IOException ignored) {
+            }
 
         }).start();
     }
