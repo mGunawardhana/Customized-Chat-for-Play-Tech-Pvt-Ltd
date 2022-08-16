@@ -23,7 +23,11 @@ public class LoginFormController {
     public PasswordField passwordField;
     public AnchorPane LoginAnchorPane;
 
+
     public void loginOnAction(ActionEvent actionEvent) throws IOException {
+
+        ClientFormController.userName = userNameTxt.getText();
+
 
         /* client one form loading on action */
 

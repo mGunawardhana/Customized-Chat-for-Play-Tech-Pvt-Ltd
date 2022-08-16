@@ -11,22 +11,26 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ServerFormController {
 
     /* initializing static string holders for catching messages */
-    private static String text_chat_one = "",text_chat_two = "",text_chat_three = "";
+    private static String text_chat_one = "", text_chat_two = "", text_chat_three = "";
 
     /* initializing port numbers to interact with clients */
-    final int PORT = 5000,port = 8000, port3 = 1234;
+    final int PORT = 5000, port = 8000, port3 = 1234;
+
+    @FXML
+    public TextArea textArea;
+    @FXML
+    public TextField textMessage;
 
     /* initializing String var for holding InputStream and OutputStream value */
-    String message = "",message2 = "",message3 = "";
+    String message = "", message2 = "", message3 = "";
 
     /* initializing sockets to connect with Clients */
     Socket accept, accept2, accept3;
@@ -38,27 +42,33 @@ public class ServerFormController {
     /* initializing server sockets */
     ServerSocket serverSocket, serverSocket_client2, serverSocket_client3;
 
-    @FXML
-    public TextArea textArea;
-    @FXML
-    public TextField textMessage;
+    BufferedImage bufferedImage;
+    BufferedWriter bufferedWriter;
+    BufferedReader bufferedReader;
+
 
     public void initialize() {
 
         /* client one thread */
         new Thread(() -> {
+            String chatMessages;
             try {
+
                 serverSocket = new ServerSocket(PORT);
                 textArea.appendText("Server Started..\n");
                 accept = serverSocket.accept();
                 textArea.appendText("\nClient 1 Connected..");
+
+                bufferedWriter = new BufferedWriter(new OutputStreamWriter(accept.getOutputStream()));
+                bufferedReader = new BufferedReader(new InputStreamReader(accept.getInputStream()));
 
                 /* accepting input and output streams */
                 dataInputStream = new DataInputStream(accept.getInputStream());
                 dataOutputStream = new DataOutputStream(accept.getOutputStream());
 
                 while (!message.equals("exit")) {
-                    message = dataInputStream.readUTF();
+                    chatMessages =
+                            message = dataInputStream.readUTF();
                     textArea.appendText("\nClient 1 : " + message);
 
                     dataOutputStream.writeUTF("Client 1 : " + message.trim());
@@ -73,6 +83,30 @@ public class ServerFormController {
                     /* sending client one message to client three */
                     dataOutputStream3.writeUTF("Client 1 : " + text_chat_one.trim());
                     dataOutputStream3.flush();
+
+
+                    /* -------------------------------------------------------------------------------------- */
+
+//                    System.out.println("Reading: " + System.currentTimeMillis());
+
+//                    Flushed: 1660635712280
+//                             1660635712281
+//                    Closing: 1660635742280
+
+//                    byte[] sizeAr = new byte[4];
+//                    dataInputStream.read(sizeAr);
+//                    int size = ByteBuffer.wrap(sizeAr).asIntBuffer().get();
+//
+//                    try{
+//                        byte[] imageAr = new byte[size];
+//                        dataInputStream.read(imageAr);
+//                        BufferedImage image = ImageIO.read(new ByteArrayInputStream(imageAr));
+//                        System.out.println("Received " + image.getHeight() + "x" + image.getWidth() + ": " + System.currentTimeMillis());
+//
+//                    }catch (NullPointerException e){e.printStackTrace();}
+//                    ImageIO.read(image, "jpg", new File("C:\\Users\\Jakub\\Pictures\\test2.jpg"));
+
+                    /* -------------------------------------------------------------------------------------- */
                 }
 
                 /* closing server socket */

@@ -86,6 +86,8 @@ public class ClientFormController2 {
     public void sendOnAction2(ActionEvent actionEvent) throws IOException {
         dataOutputStream2.writeUTF(textMessage2.getText().trim() + emo1 + emo2 + emo3);
         dataOutputStream2.flush();
+        textMessage2.clear();
+        emojiPane.setVisible(false);
     }
 
     /* on action for opening emoji window */

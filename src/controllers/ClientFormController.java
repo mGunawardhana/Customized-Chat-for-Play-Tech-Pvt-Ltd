@@ -2,20 +2,20 @@ package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 
 public class ClientFormController {
+
+    public static String userName;
 
     /* emoji unicode holders */
     static String emo1 = "", emo2 = "", emo3 = "";
@@ -26,6 +26,8 @@ public class ClientFormController {
     /* emoji tab */
     public AnchorPane emojiPane;
     public AnchorPane clientOneAnchorPane;
+    public ScrollPane scrollpane;
+    public VBox vbox;
 
     /* initializing socket */
     Socket accept;
@@ -38,10 +40,11 @@ public class ClientFormController {
     String message = "";
 
     FileChooser fileChooser = new FileChooser();
-
+    private Socket socket;
+    private BufferedReader bufferedReader;
+    private BufferedWriter bufferedWriter;
     @FXML
     private TextArea textArea;
-
     @FXML
     private TextField textMessage;
 
@@ -84,14 +87,6 @@ public class ClientFormController {
 
     }
 
-    /* text message sender - on action */
-    @FXML
-    void sendOnAction(ActionEvent event) throws IOException {
-        dataOutputStream.writeUTF(
-                textMessage.getText().trim() + emo1 + emo2 + emo3);
-        dataOutputStream.flush();
-        emojiPane.setVisible(false);
-    }
 
     /* on action for opening emoji window */
     public void emoSendOnAction(MouseEvent mouseEvent) {
@@ -99,58 +94,49 @@ public class ClientFormController {
     }
 
     /* setting up file chooser for client one */
-    public void imageSendOnAction(MouseEvent mouseEvent) throws IOException {
-        fileChooser.setTitle("Open Resource File");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("ALL FILES", "*.*"),
-                new FileChooser.ExtensionFilter("ZIP", "*.zip"),
-                new FileChooser.ExtensionFilter("PDF", "*.pdf"),
-                new FileChooser.ExtensionFilter("TEXT", "*.txt"),
-                new FileChooser.ExtensionFilter("IMAGE FILES", "*.jpg", "*.png", "*.gif")
-        );
+    public void imageSendOnAction(MouseEvent mouseEvent) throws IOException, InterruptedException {
+        /**
+         *
+         * fileChooser.setTitle("Open Resource File");
+         fileChooser.getExtensionFilters().addAll(
+         new FileChooser.ExtensionFilter("ALL FILES", "*.*"),
+         new FileChooser.ExtensionFilter("ZIP", "*.zip"),
+         new FileChooser.ExtensionFilter("PDF", "*.pdf"),
+         new FileChooser.ExtensionFilter("TEXT", "*.txt"),
+         new FileChooser.ExtensionFilter("IMAGE FILES", "*.jpg", "*.png", "*.gif")
+         );
 
+         File file = fileChooser.showOpenDialog(new Stage());
+         System.out.println(file);
 
-        File file = fileChooser.showOpenDialog(new Stage());
-        System.out.println(file);
-//
-//
-//            FileChooser fileChooser = new FileChooser();
-//            fileChooser.setTitle("Open Resource File");
-//            File selectedFile = fileChooser.showOpenDialog(new Stage());
+         BufferedImage image = ImageIO.read(new File(file.toString()));
 
-//            if (selectedFile != null) {
-//
-//                String[] res = selectedFile.getName().split("\\.");
-//                BufferedImage finalImage;
-//
-//                try {
-//                    finalImage = ImageIO.read(selectedFile);
-//                } catch (Exception e) {
-//                    new Alert(Alert.AlertType.NONE, "Please select a file-type associated with images! try again", ButtonType.CLOSE).showAndWait();
-//                    return;
-//                }
-//
-//                ByteArrayOutputStream bout = new ByteArrayOutputStream();
-//                ImageIO.write(finalImage, res[1], bout);
+         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+         ImageIO.write(image, fileChooser.toString(), byteArrayOutputStream);
 
-            /*byte[] temp_payload = dataOutputStream3Name.getBytes(StandardCharsets.UTF_8);
-            byte[] temp_header = ByteBuffer.allocate(4).putInt(temp_payload.length).array();*/
+         byte[] size = ByteBuffer.allocate(4).putInt(byteArrayOutputStream.size()).array();
+         dataOutputStream.write(size);
+         dataOutputStream.write(byteArrayOutputStream.toByteArray());
+         dataOutputStream.flush();
+         System.out.println("Flushed: " + System.currentTimeMillis());
 
-//                byte[] payload = bout.toByteArray();
-            /*byte[] header = ByteBuffer.allocate(4).putInt(payload.length).array();
+         Thread.sleep(30000);
+         System.out.println("Closing: " + System.currentTimeMillis());
+         dataOutputStream.close();
 
-            byte[] frame = ArrayUtils.addAll(temp_header,header);
+         */
 
-            frame = ArrayUtils.addAll(frame,sender);
-            frame = ArrayUtils.addAll(frame,temp_payload);
-            frame = ArrayUtils.addAll(frame,payload);*/
+    }
 
-//                dataOutputStream3.write(-1);
-//                dataOutputStream3.write(payload);
-//                dataOutputStream3.flush();
-            }
-
-
+    /* text message sender - on action */
+    @FXML
+    void sendOnAction(ActionEvent event) throws IOException {
+        dataOutputStream.writeUTF(
+                //TODO : remove this
+                textMessage.getText().trim() + emo1 + emo2 + emo3);
+        dataOutputStream.flush();
+        emojiPane.setVisible(false);
+        textMessage.clear();
     }
 
     /* emoji pane disabling on-action */
