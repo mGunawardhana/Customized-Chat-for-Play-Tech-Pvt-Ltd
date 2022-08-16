@@ -23,9 +23,7 @@ import java.net.Socket;
 public class ClientFormController2 {
 
     /* emoji unicode holders */
-    static String emo1 = "";
-    static String emo2 = "";
-    static String emo3 = "";
+    static String emo1 = "",emo2 = "",emo3 = "";
 
     /* client one port */
     final int PORT = 8000;
@@ -73,6 +71,8 @@ public class ClientFormController2 {
                 }
 
                 socket2.close();
+
+                /* closing input and output streams */
                 dataOutputStream2.close();
                 dataInputStream2.close();
 

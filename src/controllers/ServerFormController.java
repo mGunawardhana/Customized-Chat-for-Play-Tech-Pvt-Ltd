@@ -19,41 +19,29 @@ import java.net.Socket;
 
 public class ServerFormController {
 
-    static String message3 = "";
-
     /* initializing static string holders for catching messages */
-    private static String text_chat_one = "";
-    private static String text_chat_two = "";
-    private static String text_chat_three = "";
+    private static String text_chat_one = "",text_chat_two = "",text_chat_three = "";
 
     /* initializing port numbers to interact with clients */
-    final int PORT = 5000;
-    final int port = 8000;
-    final int port3 = 1234;
-    public TextArea textArea;
-    public TextField textMessage;
+    final int PORT = 5000,port = 8000, port3 = 1234;
 
     /* initializing String var for holding InputStream and OutputStream value */
-    String message = "";
-    String message2 = "";
+    String message = "",message2 = "",message3 = "";
 
     /* initializing sockets to connect with Clients */
-    Socket accept;
-    Socket accept2;
-    Socket accept3;
+    Socket accept, accept2, accept3;
 
     /* initializing pack of dataInputStream and dataOutputStream */
-    DataInputStream dataInputStream;
-    DataOutputStream dataOutputStream;
-    DataInputStream dataInputStream2;
-    DataOutputStream dataOutputStream2;
-    DataInputStream dataInputStream3;
-    DataOutputStream dataOutputStream3;
+    DataInputStream dataInputStream, dataInputStream2, dataInputStream3;
+    DataOutputStream dataOutputStream, dataOutputStream2, dataOutputStream3;
 
     /* initializing server sockets */
-    ServerSocket serverSocket;
-    ServerSocket serverSocket_client2;
-    ServerSocket serverSocket_client3;
+    ServerSocket serverSocket, serverSocket_client2, serverSocket_client3;
+
+    @FXML
+    public TextArea textArea;
+    @FXML
+    public TextField textMessage;
 
     public void initialize() {
 
@@ -197,5 +185,6 @@ public class ServerFormController {
         dataOutputStream2.flush();
         dataOutputStream3.writeUTF("Server : " + textMessage.getText().trim());
         dataOutputStream3.flush();
+        textMessage.clear();
     }
 }

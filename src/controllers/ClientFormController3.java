@@ -23,9 +23,7 @@ import java.net.Socket;
 public class ClientFormController3 {
 
     /* emoji unicode holders */
-    static String emo1 = "";
-    static String emo2 = "";
-    static String emo3 = "";
+    static String emo1 = "", emo2 = "", emo3 = "";
 
     /* client three port */
     final int port3 = 1234;
@@ -33,6 +31,11 @@ public class ClientFormController3 {
     /* emoji tab */
     public AnchorPane emojiPane;
     public AnchorPane clientAnchorPane3;
+
+    @FXML
+    public TextArea textArea3;
+    @FXML
+    public TextField textMessage3;
 
     /* initializing socket */
     Socket socket3;
@@ -43,13 +46,6 @@ public class ClientFormController3 {
 
     /* initializing String var for holding InputStream and OutputStream value */
     String message3 = "";
-
-    @FXML
-    public TextArea textArea3;
-
-    @FXML
-    public TextField textMessage3;
-
 
     public void initialize() {
         emo1 = "";
@@ -72,6 +68,8 @@ public class ClientFormController3 {
                 }
 
                 socket3.close();
+
+                /* closing input and output streams */
                 dataOutputStream3.close();
                 dataInputStream3.close();
 
@@ -106,18 +104,18 @@ public class ClientFormController3 {
 
     /* emoji unicode assigning section */
     public void l1emoOnAction(MouseEvent mouseEvent) {
-        textMessage3.setText(textMessage3.getText()+"\uD83D\uDE42");
+        textMessage3.setText(textMessage3.getText() + "\uD83D\uDE42");
     }
 
     public void l2emoOnAction(MouseEvent mouseEvent) {
-        textMessage3.setText(textMessage3.getText()+"\uD83D\uDE0D");
+        textMessage3.setText(textMessage3.getText() + "\uD83D\uDE0D");
     }
 
     public void l3emoOnAction(MouseEvent mouseEvent) {
-        textMessage3.setText(textMessage3.getText()+"\uD83E\uDD2A");
+        textMessage3.setText(textMessage3.getText() + "\uD83E\uDD2A");
     }
 
-    public void setController3(AnchorPane anchorPane){
-        this.clientAnchorPane3=anchorPane;
+    public void setController3(AnchorPane anchorPane) {
+        this.clientAnchorPane3 = anchorPane;
     }
 }
