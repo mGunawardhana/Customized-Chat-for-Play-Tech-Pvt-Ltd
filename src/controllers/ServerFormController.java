@@ -11,8 +11,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -42,16 +43,10 @@ public class ServerFormController {
     /* initializing server sockets */
     ServerSocket serverSocket, serverSocket_client2, serverSocket_client3;
 
-    BufferedImage bufferedImage;
-    BufferedWriter bufferedWriter;
-    BufferedReader bufferedReader;
-
-
     public void initialize() {
 
         /* client one thread */
         new Thread(() -> {
-            String chatMessages;
             try {
 
                 serverSocket = new ServerSocket(PORT);
@@ -59,16 +54,13 @@ public class ServerFormController {
                 accept = serverSocket.accept();
                 textArea.appendText("\nClient 1 Connected..");
 
-                bufferedWriter = new BufferedWriter(new OutputStreamWriter(accept.getOutputStream()));
-                bufferedReader = new BufferedReader(new InputStreamReader(accept.getInputStream()));
-
                 /* accepting input and output streams */
                 dataInputStream = new DataInputStream(accept.getInputStream());
                 dataOutputStream = new DataOutputStream(accept.getOutputStream());
 
                 while (!message.equals("exit")) {
-                    chatMessages =
-                            message = dataInputStream.readUTF();
+
+                    message = dataInputStream.readUTF();
                     textArea.appendText("\nClient 1 : " + message);
 
                     dataOutputStream.writeUTF("Client 1 : " + message.trim());

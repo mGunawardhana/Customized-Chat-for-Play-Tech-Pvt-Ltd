@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.Socket;
@@ -67,6 +68,42 @@ public class ClientFormController {
                 while (!message.equals("exit")) {
                     message = dataInputStream.readUTF();
                     textArea.appendText(message + "\n");
+
+                    //==================================================================================================
+//                    Platform.runLater(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            if (message.startsWith("/")) {
+//                                BufferedImage sendImage = null;
+//                                try {
+//                                    sendImage = ImageIO.read(new File(message));
+//                                } catch (IOException e) {
+//                                    e.printStackTrace();
+//                                }
+//                                Image img = SwingFXUtils.toFXImage(sendImage, null);
+//                                ImageView imageView = new ImageView(img);
+//                                imageView.setFitHeight(150);
+//                                imageView.setFitWidth(150);
+//                                imageView.setLayoutY(i);
+//                                context.getChildren().add(imageView);
+//                                i += 150;
+//                            } else if (message.startsWith(LoginForm01Controller.name)) {
+//                                message = message.replace(LoginForm01Controller.name, "You");
+//                                Label label = new Label(message);
+//                                label.setStyle(" -fx-font-family: Ubuntu; -fx-font-size: 20px; -fx-background-color: #85b6ff; -fx-text-fill: #5c5c5c");
+//                                label.setLayoutY(i);
+//                                context.getChildren().add(label);
+//                            } else {
+//                                Label label = new Label(message);
+//                                label.setStyle(" -fx-font-family: Ubuntu; -fx-font-size: 20px; -fx-background-color: #CDB4DB; -fx-text-fill: #5c5c5c");
+//                                label.setLayoutY(i);
+//                                context.getChildren().add(label);
+//                            }
+//                            i += 30;
+//                        }
+//                    });
+                    //==================================================================================================
+
                 }
 
                 /* sending message to server side */
@@ -95,37 +132,32 @@ public class ClientFormController {
 
     /* setting up file chooser for client one */
     public void imageSendOnAction(MouseEvent mouseEvent) throws IOException, InterruptedException {
-        /**
-         *
-         * fileChooser.setTitle("Open Resource File");
-         fileChooser.getExtensionFilters().addAll(
-         new FileChooser.ExtensionFilter("ALL FILES", "*.*"),
-         new FileChooser.ExtensionFilter("ZIP", "*.zip"),
-         new FileChooser.ExtensionFilter("PDF", "*.pdf"),
-         new FileChooser.ExtensionFilter("TEXT", "*.txt"),
-         new FileChooser.ExtensionFilter("IMAGE FILES", "*.jpg", "*.png", "*.gif")
-         );
 
-         File file = fileChooser.showOpenDialog(new Stage());
-         System.out.println(file);
 
-         BufferedImage image = ImageIO.read(new File(file.toString()));
+        fileChooser.setTitle("Open Resource File");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("ALL FILES", "*.*"),
+                new FileChooser.ExtensionFilter("ZIP", "*.zip"),
+                new FileChooser.ExtensionFilter("PDF", "*.pdf"),
+                new FileChooser.ExtensionFilter("TEXT", "*.txt"),
+                new FileChooser.ExtensionFilter("IMAGE FILES", "*.jpg", "*.png", "*.gif")
+        );
 
-         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-         ImageIO.write(image, fileChooser.toString(), byteArrayOutputStream);
+        File file = fileChooser.showOpenDialog(new Stage());
+        System.out.println(file);
 
-         byte[] size = ByteBuffer.allocate(4).putInt(byteArrayOutputStream.size()).array();
-         dataOutputStream.write(size);
-         dataOutputStream.write(byteArrayOutputStream.toByteArray());
-         dataOutputStream.flush();
-         System.out.println("Flushed: " + System.currentTimeMillis());
 
-         Thread.sleep(30000);
-         System.out.println("Closing: " + System.currentTimeMillis());
-         dataOutputStream.close();
+        FileChooser chooser = new FileChooser();
+        Stage stage = new Stage();
+        file = chooser.showOpenDialog(stage);
 
-         */
-
+//        if (file != null) {
+////            dataOutputStream.writeUTF(file.getPath());
+//            path = file.getPath();
+//            System.out.println("selected");
+//            System.out.println(file.getPath());
+//            isImageChoose = true;
+//        }
     }
 
     /* text message sender - on action */
